@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         main: "#273C75",
       },
+      fontFamily: {
+        Poppins: ["Poppins"],
+      },
     },
   },
   variants: {

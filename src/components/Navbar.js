@@ -6,7 +6,7 @@ function Navbar() {
   return (
     // navbar start
     <nav
-      className="flex py-6 px-6 border-b-2 border-main space-x-6"
+      className="flex py-6 px-6 border-b-2 border-main space-x-6 font-Poppins text-sm"
       role="navigation"
     >
       <Link to="/" className="">
@@ -50,15 +50,13 @@ function Navbar() {
           {/* input box */}
           <input
             type="text"
-            className="ml-6 lg:w-64  w-52"
+            className="ml-6 lg:w-64 w-52 outline-none"
             placeholder=""
           ></input>
         </div>
       </div>
       {/* randomize button */}
-      <Link className="flex items-center bg-main lg:px-5 rounded-full text-white outline-none border-0 px-3">
-        Randomize
-      </Link>
+      <Link className="btn">Randomize</Link>
     </nav>
     // navbar end
   );
