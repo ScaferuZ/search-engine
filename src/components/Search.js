@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-function Search() {
+import { useHistory } from "react-router";
+
+// yang di dalam parameter itu namanya PROPS
+function Search({ hideButtons = false }) {
   const [input, setInput] = useState("");
+  const history = useHistory();
 
-  const searchBar = (e) => {
+  const search = (e) => {
+    // supaya tidak terjadi refresh saat submit(?)
     e.preventDefault();
-
-    console.log("you yes");
+    // saat menekan enter, maka akan otomatis pindah ke /search
+    history.push("/search");
   };
   return (
     <form className="flex flex-col justify-center items-center mt-6">
@@ -18,20 +23,35 @@ function Search() {
           <AiOutlineSearch className="h-5 w-5 absolute" />
           {/* input box */}
           <input
-            className="ml-8 lg:w-64 w-52 outline-none"
+            className="input"
             value={input}
+            // untuk nge-track apa yang diinput ke dalam input
             onChange={(e) => setInput(e.target.value)}
           />
         </div>
       </div>
-      <div className="flex space-x-5 h-10 font-Poppins text-sm mt-6 mb-72">
-        {/* Search button */}
-        <button type="submit" onClick={searchBar} className="btn">
-          Search It
-        </button>
-        {/* randomize button */}
-        <button className="btn">Randomize It</button>
-      </div>
+      {/* ini namanya ternary operator. sepemahaman endra, ini kurang lebih kaya if else, apabila hideButtons tidak di-trigger, maka dia akan menampilkan button */}
+      {!hideButtons ? (
+        <div className="flex space-x-5 h-10 font-Poppins text-sm mt-6 mb-72">
+          {/* Search button */}
+          <button type="submit" onClick={search} className="btn">
+            {/* saat kita klik, maka dia akan menjalankan function search */}
+            Search It
+          </button>
+          {/* randomize button */}
+          <button className="btn">Randomize It</button>
+        </div>
+      ) : (
+        <div className="flex space-x-5 h-10 font-Poppins text-sm mt-6 mb-72">
+          {/* Search button */}
+          <button type="submit" onClick={search} className="btnhidden">
+            {/* saat kita klik, maka dia akan menjalankan function search */}
+            Search It
+          </button>
+          {/* randomize button */}
+          <button className="btnhidden">Randomize It</button>
+        </div>
+      )}
     </form>
   );
 }

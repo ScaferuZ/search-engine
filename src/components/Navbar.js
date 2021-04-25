@@ -56,7 +56,9 @@ function Navbar() {
         </div>
       </div>
       {/* randomize button */}
-      <Link className="btn">Randomize</Link>
+      <Link to="/" className="btn">
+        Randomize
+      </Link>
     </nav>
     // navbar end
   );
