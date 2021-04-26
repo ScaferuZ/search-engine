@@ -1,8 +1,10 @@
 import React from "react";
-// react-router-dom berguna untuk me-link sebuah komponen ke suatu page yang dituju
 import { Link } from "react-router-dom";
+import { useStateValue } from "../StateProvider";
 
 function Navbar() {
+  const [{ term }, dispatch] = useStateValue();
+
   return (
     // navbar start
     <nav
@@ -50,8 +52,8 @@ function Navbar() {
           {/* input box */}
           <input
             type="text"
+            value={term}
             className="ml-6 lg:w-64 w-52 outline-none"
-            placeholder=""
           ></input>
         </div>
       </div>

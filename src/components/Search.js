@@ -1,15 +1,25 @@
 import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useHistory } from "react-router";
+import { useStateValue } from "../StateProvider";
+import { actionTypes } from "../reducer";
 
 // yang di dalam parameter itu namanya PROPS
 function Search({ hideButtons = false }) {
+  const [{}, dispatch] = useStateValue();
+
   const [input, setInput] = useState("");
   const history = useHistory();
 
   const search = (e) => {
     // supaya tidak terjadi refresh saat submit(?)
     e.preventDefault();
+
+    dispatch({
+      type: actionTypes.SET_SEARCH_TERM,
+      term: input,
+    });
+
     // saat menekan enter, maka akan otomatis pindah ke /search
     history.push("/search");
   };
